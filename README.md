@@ -1,24 +1,21 @@
 # Serverless Email attatchment parser
-Serverless email attachement extractor
 
-To create a deployment package
+##To create a deployment package
 
-Create a folder (examplefolder), and then create a subfolder (node_modules).
+1.Create a folder (examplefolder), and then create a subfolder (node_modules).
 
-Install the Node.js platform. For more information, see the Node.js website.
+2.Install the Node.js platform. For more information, see the Node.js website.
 
-Install dependencies. The code examples use the following libraries:
+3.Install dependencies. The code uses the following libraries:
 
-AWS SDK for JavaScript in Node.js
-
-gm, GraphicsMagick for node.js
-
-Async utility module
+  AWS SDK for JavaScript in Node.js
+  Async utility module
+  mailparser
 
 The AWS Lambda runtime already has the AWS SDK for JavaScript in Node.js, so you only need to install the other libraries. Open a command prompt, navigate to the examplefolder, and install the libraries using the npm command, which is part of Node.js.
 
 ```
-npm install async gm mailparser
+npm install async mailparser
 ```
 
-copy paste the json from sampletest.json to the lambda function.
+copy paste the json from sampletest.json to the lambda function test case.
