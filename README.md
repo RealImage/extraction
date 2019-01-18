@@ -1,4 +1,4 @@
-# extraction
+# Serverless Email attatchment parser
 Serverless email attachement extractor
 
 To create a deployment package
