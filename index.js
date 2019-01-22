@@ -12,9 +12,10 @@ var s3 = new AWS.S3();
 exports.handler = function(event, context, callback) {
     // Read options from the event.
     var eventBody = event.Records[0].body;
-    var srcBucket = JSON.parse(eventBody).Records[0].s3.bucket.name;
+    sources3 = JSON.parse(eventBody).Records[0].s3;
+    var srcBucket = sources3.bucket.name;
     // Object key may have spaces or unicode non-ASCII characters.
-    var srcKey    = decodeURIComponent(JSON.parse(eventBody).Records[0].s3.object.key.replace(/\+/g, " "));  
+    var srcKey    = decodeURIComponent(sources3.object.key.replace(/\+/g, " "));  
     var dstBucket = process.env.S3_BUCKET;
     var dstKey    = srcKey;
 
