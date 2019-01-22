@@ -15,7 +15,7 @@ exports.handler = function(event, context, callback) {
     var srcBucket = JSON.parse(eventBody).Records[0].s3.bucket.name;
     // Object key may have spaces or unicode non-ASCII characters.
     var srcKey    = decodeURIComponent(JSON.parse(eventBody).Records[0].s3.object.key.replace(/\+/g, " "));  
-    var dstBucket = srcBucket + "resized";
+    var dstBucket = process.env.S3_BUCKET;
     var dstKey    = srcKey;
 
     // Sanity check: validate that source and destination are different buckets.
@@ -27,7 +27,7 @@ exports.handler = function(event, context, callback) {
     //async waterdall docs https://caolan.github.io/async/docs.html#waterfall
     async.waterfall([
         function download(next) {
-            // Download the image from S3 into a buffer.
+            // Download the file from S3 into a buffer.
             s3.getObject({
                     Bucket: srcBucket,
                     Key: srcKey
@@ -46,12 +46,12 @@ exports.handler = function(event, context, callback) {
         },
             
         function upload(mailattachments, next) {
-            // Stream the transformed image to a different S3 bucket.
+            // Stream the transformed file to a different S3 bucket.
             Promise.all(mailattachments.map((mailattachment) => {
                 return new Promise((resolve, reject) => {
                     s3.putObject({
                         Bucket: dstBucket,
-                        Key: mailattachment.filename,
+                        Key: mailattachment.checksum + mailattachment.filename,
                         Body: mailattachment.content,
                         ContentType: contentType
                     }, (err, data) => {

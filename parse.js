@@ -11,7 +11,6 @@ var mailattach = {
 // mailattch = [{ filename: '', content: '' }, {  }]
 
 module.exports = function mailparser(data){
-    console.log("here");
     return new Promise(function(resolve, reject){
         simpleParser(data)
             .then(mail => {
