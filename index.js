@@ -11,11 +11,11 @@ var s3 = new AWS.S3();
 
 exports.handler = function(event, context, callback) {
     // Read options from the event.
-    var eventBody = event.Records[0].body;
-    sources3 = JSON.parse(eventBody).Records[0].s3;
-    var srcBucket = sources3.bucket.name;
+    var eventBody = event.Records[0].body; 
+    sourceS3 = JSON.parse(eventBody).Records[0].s3;
+    var srcBucket = sourceS3.bucket.name;
     // Object key may have spaces or unicode non-ASCII characters.
-    var srcKey    = decodeURIComponent(sources3.object.key.replace(/\+/g, " "));  
+    var srcKey    = decodeURIComponent(sourceS3.object.key.replace(/\+/g, " "));  
     var dstBucket = process.env.S3_BUCKET;
     var dstKey    = srcKey;
 
@@ -52,8 +52,8 @@ exports.handler = function(event, context, callback) {
                 return new Promise((resolve, reject) => {
                     s3.putObject({
                         Bucket: dstBucket,
-                        Key: mailattachment.checksum + mailattachment.filename,
-                        Body: mailattachment.content,
+                        Key: mailattachment.email+'/'+mailattachment.date+'/'+mailattachment.attachment.filename+'/'+mailattachment.attachment.checksum,
+                        Body: mailattachment.attachment.content,
                         ContentType: contentType
                     }, (err, data) => {
                         if (err) {
