@@ -5,11 +5,10 @@ const fs = require('fs');
 const simpleParser = require('mailparser').simpleParser;
 var mailattach = []
 
-// mailattch = [{ filename: '', content: '' }, {  }]
-// regex to get email address inside the brackets <>. 
+// regex to get email address from string 
 // Because mail.email returns email: 'Hello world! <helloworld@gmail.com>'
 
-var regExp = /\<([^)]+)\>/;
+var regExp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
 
 module.exports = function mailparser(data){
     return new Promise(function(resolve, reject){
@@ -25,7 +24,7 @@ module.exports = function mailparser(data){
             resolve(mailattach);
             })
             .catch(err => {
-                console.log("parse err",err);
+                console.log("parse error :",err);
                 reject(err);
                 
         });
