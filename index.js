@@ -12,6 +12,7 @@ var s3 = new AWS.S3();
 exports.handler = function(event, context, callback) {
     // Read options from the event.
     var eventBody = event.Records[0].body; 
+    
     sourceS3 = JSON.parse(eventBody).Records[0].s3;
     var srcBucket = sourceS3.bucket.name;
     // Object key may have spaces or unicode non-ASCII characters.
@@ -19,6 +20,13 @@ exports.handler = function(event, context, callback) {
     var dstBucket = process.env.S3_BUCKET;
     var dstKey    = srcKey;
 
+    var ReceiptHandle = event.Records[0].ReceiptHandle
+    //to delete queue message
+    var params = {
+        QueueUrl: process.env.QueueUrl,
+        ReceiptHandle: ReceiptHandle 
+      };
+    
     // Sanity check: validate that source and destination are different buckets.
     if (srcBucket == dstBucket) {
         callback("Source and destination buckets are the same.");
@@ -77,6 +85,13 @@ exports.handler = function(event, context, callback) {
                     ' and uploaded to ' + dstBucket + '/' + dstKey
                 );
             }
+        
+            sqs.deleteMessage(params, function(err, data) {
+                if (err) 
+                    console.log(err, err.stack); // an error occurred
+                else     
+                    console.log("sqs message delete :",data);           // successful response
+            });
 
             callback(null, "Successfull");
         }
