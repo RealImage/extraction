@@ -8,7 +8,7 @@ var mailattach = []
 // regex to get email address from string 
 // Because mail.email returns email: 'Hello world! <helloworld@gmail.com>'
 
-var regExp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
+var regExp = /([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/;
 
 module.exports = function mailparser(data){
     return new Promise(function(resolve, reject){
@@ -25,8 +25,7 @@ module.exports = function mailparser(data){
             })
             .catch(err => {
                 console.log("parse error :",err);
-                reject(err);
-                
+                reject(err);              
         });
     })
 }
