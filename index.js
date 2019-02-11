@@ -4,17 +4,22 @@ var AWS = require('aws-sdk');
 var mailparse = require('./parse.js');
 // get reference to S3 client 
 var s3 = new AWS.S3();
+var util = require('util');
+
 
 exports.handler = function (event, context, callback) {
     // Read options from the event.
     var eventBody = event.Records[0].body;
-
+    console.log("event :", event)
     sourceS3 = JSON.parse(eventBody).Records[0].s3;
     var srcBucket = sourceS3.bucket.name;
     // Object key may have spaces or unicode non-ASCII characters.
-    var srcKey = sourceS3.object.key;
+    var srcKey = decodeURIComponent(sourceS3.object.key);
+    srcKey = srcKey.replace(/\+/g,' ');
     var dstBucket = process.env.S3_BUCKET;
     var dstKey = srcKey;
+
+    console.log("Name of the attachment : ", srcKey)
 
     // Sanity check: validate that source and destination are different buckets.
     if (srcBucket == dstBucket) {
@@ -26,6 +31,7 @@ exports.handler = function (event, context, callback) {
     async.waterfall([
         function download(next) {
             // Download the file from S3 into a buffer.
+            console.log("Downloading file from source")
             s3.getObject({
                 Bucket: srcBucket,
                 Key: srcKey
@@ -34,6 +40,7 @@ exports.handler = function (event, context, callback) {
         },
  
         function parse(response, next) {
+            console.log("Attempting to parse attachments")
             data = response.Body;
             mailparse(data).then(mailparse => {
                 contentType = response.ContentType;
@@ -46,6 +53,7 @@ exports.handler = function (event, context, callback) {
 
         function upload(mailattachments, next) {
             // Stream the transformed file to a different S3 bucket.
+            console.log("Uploading to destination bucket")
             Promise.all(mailattachments.map((mailattachment) => {
                 return new Promise((resolve, reject) => {
                     s3.putObject({

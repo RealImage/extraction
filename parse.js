@@ -14,6 +14,7 @@ module.exports = function mailparser(data){
     return new Promise(function(resolve, reject){
         simpleParser(data)
             .then(mail => {
+                console.log(mail.from.text)
                 for (var attach in mail.attachments){
                 mailattach.push({
                     attachment : mail.attachments[attach],
