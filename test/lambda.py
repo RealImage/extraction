@@ -20,4 +20,3 @@ bucket.upload_file(fileToBeUploaded, key)
 
 for object in bucket1.objects.all():
   print(object)
-    

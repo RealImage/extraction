@@ -19,7 +19,7 @@ exports.handler = function (event, context, callback) {
     var dstBucket = process.env.S3_BUCKET;
     var dstKey = srcKey;
 
-    console.log("Name of the attachment : ", srcKey)
+    console.log("Name of the blob : ", srcKey)
 
     // Sanity check: validate that source and destination are different buckets.
     if (srcBucket == dstBucket) {
@@ -53,6 +53,9 @@ exports.handler = function (event, context, callback) {
 
         function upload(mailattachments, next) {
             // Stream the transformed file to a different S3 bucket.
+            if(mailattachments.length==0){
+                throw "There are no attachments present!!";
+            }
             console.log("Uploading to destination bucket")
             Promise.all(mailattachments.map((mailattachment) => {
                 return new Promise((resolve, reject) => {
@@ -66,6 +69,9 @@ exports.handler = function (event, context, callback) {
                             console.log("here :", err)
                             reject(err)
                         } else {
+                            console.log("Email :", mailattachment.email)
+                            console.log("Attachment hash :", mailattachment,attachment.checksum)
+                            console.log("Attachment name :", mailattachment,attachment.filename.toString('base64'))
                             resolve(data)
                         }
                     })
