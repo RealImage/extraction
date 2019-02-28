@@ -29,8 +29,7 @@ def Emailgen(From, to, subject, cc, bcc, *attachments):
     msg['Date'] = str(datetime.datetime.now())
     part = MIMEText(html_data, 'html')
     msg.attach(part)
-
-
+    
     for file in attachments:
         part = MIMEBase('application', "octet-stream")
         part.set_payload(open(file, "rb").read())
@@ -38,9 +37,9 @@ def Emailgen(From, to, subject, cc, bcc, *attachments):
         part.add_header('Content-Disposition', 'attachment; filename=' + file)
         msg.attach(part)
 
-    outfile_name = ("eml/email_sample.eml")
+    outfile_name = ("eml/"+From)
     with open(outfile_name, 'w') as outfile:
         gen = generator.Generator(outfile)
         gen.flatten(msg)
 
-    print ("=========== DONE ============")
+    print ("=========== Blob created ============")
