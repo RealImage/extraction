@@ -1,0 +1,77 @@
+Content-Type: multipart/alternative;
+ boundary="===============2942305872047868276=="
+MIME-Version: 1.0
+Subject: adasd
+From: "hello world!," <sanjeevsiva17>
+To: hellloworld
+Cc: nil
+Bcc: nil
+Date: 2019-02-28 15:47:36.235373
+
+--===============2942305872047868276==
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+            <html>
+                <head></head>
+                <body>
+                    <p> hello world </p>
+                </body>
+            </html>
+            
+--===============2942305872047868276==
+Content-Type: application/octet-stream
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=emailgen.py
+
+aW1wb3J0IG9zCmZyb20gZW1haWwgaW1wb3J0IGdlbmVyYXRvcgpmcm9tIGVtYWlsLm1pbWUubXVs
+dGlwYXJ0IGltcG9ydCBNSU1FTXVsdGlwYXJ0CmZyb20gZW1haWwubWltZS50ZXh0IGltcG9ydCBN
+SU1FVGV4dApmcm9tIGVtYWlsLk1JTUVCYXNlIGltcG9ydCBNSU1FQmFzZQpmcm9tIGVtYWlsIGlt
+cG9ydCBFbmNvZGVycwppbXBvcnQgZGF0ZXRpbWUKaW1wb3J0IHJlIAoKZGVmIEVtYWlsZ2VuKEZy
+b20sIHRvLCBzdWJqZWN0LCBjYywgYmNjLCAqYXR0YWNobWVudHMpOgogICAgIyB4ID0gaW5wdXQo
+Ik51bWJlciBvZiBhdHRhY2htZW50czogIikKICAgICMgeT1bXQogICAgCiAgICAjIGZvciBpIGlu
+IHJhbmdlKHgpOgogICAgIyAgICAgeS5hcHBlbmQocmF3X2lucHV0KCJFbnRlciB0aGUgZmlsZSBu
+YW1lOiAiKSkKCiAgICAjIHByaW50KHkpCgogICAgaHRtbF9kYXRhID0gIiIiCiAgICAgICAgICAg
+IDxodG1sPgogICAgICAgICAgICAgICAgPGhlYWQ+PC9oZWFkPgogICAgICAgICAgICAgICAgPGJv
+ZHk+CiAgICAgICAgICAgICAgICAgICAgPHA+IGhlbGxvIHdvcmxkIDwvcD4KICAgICAgICAgICAg
+ICAgIDwvYm9keT4KICAgICAgICAgICAgPC9odG1sPgogICAgICAgICAgICAiIiIKCiAgICBtc2cg
+PSBNSU1FTXVsdGlwYXJ0KCdhbHRlcm5hdGl2ZScpCiAgICBtc2dbJ1N1YmplY3QnXSA9IHN1Ympl
+Y3QKCiAgICBGcm9tID0gRnJvbQogICAgbXNnWydGcm9tJ10gPSAnImhlbGxvIHdvcmxkISwiIDwn
+KyBGcm9tICsnPicKICAgICMgK3JlLmZpbmRhbGwociJeW15AXSsiLCBGcm9tKSsKICAgIG1zZ1sn
+VG8nXSA9IHRvCiAgICBtc2dbJ0NjJ10gPSBjYwogICAgbXNnWydCY2MnXSA9IGJjYwogICAgbXNn
+WydEYXRlJ10gPSBzdHIoZGF0ZXRpbWUuZGF0ZXRpbWUubm93KCkpCiAgICBwYXJ0ID0gTUlNRVRl
+eHQoaHRtbF9kYXRhLCAnaHRtbCcpCiAgICBtc2cuYXR0YWNoKHBhcnQpCgoKICAgIGZvciBmaWxl
+IGluIGF0dGFjaG1lbnRzOgogICAgICAgIHBhcnQgPSBNSU1FQmFzZSgnYXBwbGljYXRpb24nLCAi
+b2N0ZXQtc3RyZWFtIikKICAgICAgICBwYXJ0LnNldF9wYXlsb2FkKG9wZW4oZmlsZSwgInJiIiku
+cmVhZCgpKQogICAgICAgIEVuY29kZXJzLmVuY29kZV9iYXNlNjQocGFydCkKICAgICAgICBwYXJ0
+LmFkZF9oZWFkZXIoJ0NvbnRlbnQtRGlzcG9zaXRpb24nLCAnYXR0YWNobWVudDsgZmlsZW5hbWU9
+JyArIGZpbGUpCiAgICAgICAgbXNnLmF0dGFjaChwYXJ0KQoKICAgIHByaW50IGRpcihtc2cuZ2V0
+X2ZpbGVuYW1lKQogICAgcHJpbnQgbXNnLmdldF9maWxlbmFtZQoKICAgIG91dGZpbGVfbmFtZSA9
+ICgiZW1sL2VtYWlsX3NhbXBsZS5lbWwiKQogICAgd2l0aCBvcGVuKG91dGZpbGVfbmFtZSwgJ3cn
+KSBhcyBvdXRmaWxlOgogICAgICAgIGdlbiA9IGdlbmVyYXRvci5HZW5lcmF0b3Iob3V0ZmlsZSkK
+ICAgICAgICBnZW4uZmxhdHRlbihtc2cpCgogICAgcHJpbnQgKCI9PT09PT09PT09PSBET05FID09
+PT09PT09PT09PSIp
+--===============2942305872047868276==
+Content-Type: application/octet-stream
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=lambda.py
+
+aW1wb3J0IGJvdG8zCmltcG9ydCBib3RvY29yZQppbXBvcnQganNvbgppbXBvcnQgb3MKZnJvbSBl
+bWFpbGdlbiBpbXBvcnQgRW1haWxnZW4KCiMgczMgPSBib3RvMy5yZXNvdXJjZSgnczMnLCByZWdp
+b25fbmFtZSA9ICd1cy1lYXN0LTEnKQoKIyBidWNrZXRfbmFtZSA9ICdpbmJveC1idWNrZXQtdGVz
+dCcKIyBidWNrZXRfbmFtZTEgPSAnaW5ib3gtYnVja2V0LXRlc3RyZXNpemVkJwoKIyBidWNrZXQg
+PSBzMy5CdWNrZXQoYnVja2V0X25hbWUpCiMgcHJpbnQoImNyZWF0ZWQgc291cmNlIGJ1Y2tldFxu
+IikKCiMgYnVja2V0MSA9IHMzLkJ1Y2tldChidWNrZXRfbmFtZTEpCiMgcHJpbnQoImNyZWF0ZWQg
+ZGVzdGluYXRpb24gYnVja2V0XG4iKQoKIyBkZWYgdXBsb2FkKGZpbGVuYW1lKToKIyAgIGZpbGVU
+b0JlVXBsb2FkZWQgPSBvcy5nZXRjd2QoKSsnL2VtbC8nK2ZpbGVuYW1lCiMgICBrZXkgPSBmaWxl
+bmFtZQojICAgYnVja2V0LnVwbG9hZF9maWxlKGZpbGVUb0JlVXBsb2FkZWQsIGtleSkKCiMgZm9y
+IG9iamVjdCBpbiBidWNrZXQxLm9iamVjdHMuYWxsKCk6CiMgICB4ID0gW10KIyAgIHguYXBwZW5k
+KG9iamVjdCkKIyAgIHByaW50KG9iamVjdCkKCgpkZWYgdGVzdDEoKToKICBlbWFpbEJsb2IgPSBF
+bWFpbGdlbignc2FuamVldnNpdmExNycsICdoZWxsbG93b3JsZCcsICdhZGFzZCcsICduaWwnLCAn
+bmlsJywgJ2VtYWlsZ2VuLnB5JywgJ2xhbWJkYS5weScpCiAgIyBhc3NlcnRBdHRhY2htZW50KGZy
+b21BZGRyZXNzLCBmaWxlcykKCnRlc3QxKCk=
+--===============2942305872047868276==--
