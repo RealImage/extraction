@@ -69,9 +69,6 @@ exports.handler = function (event, context, callback) {
                             console.log("here :", err)
                             reject(err)
                         } else {
-                            console.log("Email :", mailattachment.email)
-                            console.log("Attachment hash :", mailattachment,attachment.checksum)
-                            console.log("Attachment name :", mailattachment,attachment.filename.toString('base64'))
                             resolve(data)
                         }
                     })
