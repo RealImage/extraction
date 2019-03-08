@@ -2,60 +2,61 @@ import boto3
 import botocore
 import json
 import os
-from emailgen import Emailgen
+from emailgen import GenerateEmailBlob
 import collections
+import uuid 
+import time
 
 s3 = boto3.resource('s3', region_name = 'us-east-1')
 
-bucket_name = 'inbox-bucket-test'
-bucket_name1 = 'inbox-bucket-testresized'
+source_bucket = 'inbox-bucket-test'
+destination_bucket = 'inbox-bucket-testresized'
 
-bucket = s3.Bucket(bucket_name)
-print("created source bucket\n")
+bucket = s3.Bucket(source_bucket)
+bucket1 = s3.Bucket(destination_bucket)
 
-bucket1 = s3.Bucket(bucket_name1)
-print("created destination bucket\n")
-
-
-def upload(filename):
-  fileToBeUploaded = os.getcwd()+'/eml/'+filename
+def upload(filename, emailblob):
+  fileToBeUploaded = os.getcwd()+ '/' + emailblob
   key = filename
   bucket.upload_file(fileToBeUploaded, key)
 
 compare = lambda x, y: collections.Counter(x) == collections.Counter(y)    
 
-def assertAttachment(From, *attachments):
-    objectlist = []
-    for key in bucket1.objects.filter(Prefix=From): 
-      objectlist = (objectlist + key.key.split("/")[-1:])
-    print(objectlist)   
-    result = compare(attachments,objectlist)   
+def assertAttachment(fromadd, *attachments):
+    bucketAttachment = []
+    for key in bucket1.objects.filter(Prefix=fromadd): 
+      obj = s3.Object(destination_bucket, key.key)
+      string = obj.get()['Body'].read().decode('utf-8') 
+      bucketAttachment.append(string)
+
+    localAttachment=[]
+    for attachment in attachments:
+      with open(attachment, 'r') as myfile:
+        data=myfile.read()
+        localAttachment.append(data)
+
+    result = compare(localAttachment,bucketAttachment)   
+    
+    if(len(bucketAttachment)==0):
+      print("No attachments in mail")
+      exit()
     if(result == True):
       print("Succesfully extracted ataachments")
-      print(objectlist)  
     else:
       print("Unsucessfull, Check cloudview logs for more details!")
 
-def test1(From, to, Sub, cc, bcc, *attchments):
-  emailBlob = Emailgen(From, to, Sub, cc, bcc, *attchments)
-  
-  print("Updating bucket information")
-  print("Uploading to bucket\n")
-  upload(From)
+def CreateAndUploadEmailBlob(to, Sub, cc, bcc, *attchments):
+  fromadd = str(uuid.uuid4()) + '@gmail.com'
+  print(fromadd)
+  emailBlob = GenerateEmailBlob(fromadd, to, Sub, cc, bcc, *attchments)
+  upload(fromadd, emailBlob)
+  return fromadd
+ 
 
-  print("Checking Destination bucket\n")
-  assertAttachment(From, *attachments)
+def test1():
+  attachments = ['test.json', 'test.py']
+  fromadd = CreateAndUploadEmailBlob('To@gmail.com', 'Subject', 'cc@yoahoomail.com', 'bcc@ymailcom', *attachments)
+  time.sleep(5)
+  assertAttachment(fromadd, *attachments)
 
-From = raw_input("From : ")
-To = raw_input("To : ")
-Sub = raw_input("Subject : ")
-cc = raw_input("Cc : ")
-bcc = raw_input("Bcc : ")
-
-number_of_attachments = int(raw_input("Enter the number of attachments: "))
-attachments = []
-for i in range(number_of_attachments):
-  attachments.append(raw_input("Enter name of attachment: "))
-
-test1(From, To, Sub, cc, bcc, *attachments)
-# assertAttachment('sanjeevsiva17@gmail.com', 'test.json')
+test1()

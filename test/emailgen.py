@@ -7,7 +7,7 @@ from email import Encoders
 import datetime
 import re 
 
-def Emailgen(From, to, subject, cc, bcc, *attachments):
+def GenerateEmailBlob(fromadd, to, subject, cc, bcc, *attachments):
     html_data = """
             <html>
                 <head></head>
@@ -20,8 +20,7 @@ def Emailgen(From, to, subject, cc, bcc, *attachments):
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
 
-    From = From
-    msg['From'] = '"hello world!," <'+ From +'>'
+    msg['From'] = '"hello world!," <'+ fromadd +'>'
     # +re.findall(r"^[^@]+", From)+
     msg['To'] = to
     msg['Cc'] = cc
@@ -37,9 +36,10 @@ def Emailgen(From, to, subject, cc, bcc, *attachments):
         part.add_header('Content-Disposition', 'attachment; filename=' + file)
         msg.attach(part)
 
-    outfile_name = ("eml/"+From)
+    outfile_name = ("eml/"+fromadd)
     with open(outfile_name, 'w') as outfile:
         gen = generator.Generator(outfile)
         gen.flatten(msg)
 
-    print ("=========== Blob created ============")
+    return outfile_name
+
