@@ -9,22 +9,22 @@ import time
 
 s3 = boto3.resource('s3', region_name = 'us-east-1')
 
-source_bucket = 'inbox-bucket-test'
-destination_bucket = 'inbox-bucket-testresized'
+source_bucket = 'qubewire-staging-email-blobs'
+destination_bucket = 'qw-inbox-dev-email-attachments-bucket'
 
-bucket = s3.Bucket(source_bucket)
-bucket1 = s3.Bucket(destination_bucket)
+source_bucket_object = s3.Bucket(source_bucket)
+destination_bucket_object = s3.Bucket(destination_bucket)
+
+compare = lambda x, y: collections.Counter(x) == collections.Counter(y)    
 
 def upload(filename, emailblob):
   fileToBeUploaded = os.getcwd()+ '/' + emailblob
   key = filename
-  bucket.upload_file(fileToBeUploaded, key)
-
-compare = lambda x, y: collections.Counter(x) == collections.Counter(y)    
+  source_bucket_object.upload_file(fileToBeUploaded, key)
 
 def assertAttachment(fromadd, *attachments):
     bucketAttachment = []
-    for key in bucket1.objects.filter(Prefix=fromadd): 
+    for key in destination_bucket_object.objects.filter(Prefix=fromadd): 
       obj = s3.Object(destination_bucket, key.key)
       string = obj.get()['Body'].read().decode('utf-8') 
       bucketAttachment.append(string)
@@ -53,10 +53,17 @@ def CreateAndUploadEmailBlob(to, Sub, cc, bcc, *attchments):
   return fromadd
  
 
-def test1():
+def UploadWithnAttachments():
   attachments = ['test.json', 'test.py']
   fromadd = CreateAndUploadEmailBlob('To@gmail.com', 'Subject', 'cc@yoahoomail.com', 'bcc@ymailcom', *attachments)
   time.sleep(5)
   assertAttachment(fromadd, *attachments)
 
-test1()
+def UploadWithNoAttachments():
+  attachments = []
+  fromadd = CreateAndUploadEmailBlob('To@gmail.com', 'Subject', 'cc@yoahoomail.com', 'bcc@ymailcom', *attachments)
+  time.sleep(5)
+  assertAttachment(fromadd, *attachments)
+  
+UploadWithnAttachments()
+UploadWithNoAttachments()
