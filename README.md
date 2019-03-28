@@ -19,3 +19,9 @@ npm install async mailparser
 ```
 
 copy paste the json from sampletest.json to the lambda function test case.
+
+
+# Test Code
+Run test.py
+Source Bucket : inbox-bucket-test
+Destination Bucket : inbox-bucket-testresized

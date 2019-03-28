@@ -1,0 +1,17 @@
+{
+    "Records": [
+      {
+        "messageId": "eff958ee-d7fa-4291-8b5d-f9babb04c8e7",
+        "receiptHandle": "AQEBiIlrIXLVwvJgJPmI3Qw9MFzOSEPB7Az3+hYqkC4cdDD0bFw8T43FSdLv2rb0VPJCas/5KA+nVnE0gA82REzTT6jPkw8L8ZOj98Kt52qGFdoWpZuK1HqFzA18BJAQg3/rWU0I/ClBwSuNGd5FStUUaEBNfhU+FQ4wDi6wdW7sVIIqGJ7HDHAl4qXSR1yD0QoRbjYgYbcDZu+yr5cg1SvWUpcAiWINjwu+N4yA9utEr4TYcY439XqZeVE1EwxNV7UIq8lJqRtTl1jvSya0hZWK0ng8i10NNUPGP+o/S4ByL9LfBgn13wFjYa0cDzoi7DlUNs+Kbr282R52w31mu+hQs0XxgCBrR4UCYEyvTiAFY0zCgnO5x1/rjPG8SaAYEPV5",
+        "body": "{\n                \"Records\": [\n                    {\n                        \"eventVersion\": \"2.1\",\n                        \"eventSource\": \"aws:s3\",\n                        \"awsRegion\": \"us-east-1\",\n                        \"eventTime\": \"2019-01-17T10:56:49.275Z\",\n                 \"eventName\": \"ObjectCreated:Put\",\n                        \"userIdentity\": {\n                            \"principalId\": \"AWS:XXXXXXXXX\"\n                        },\n                        \"requestParameters\": {\n                            \"sourceIPAddress\": \"180.151.69.66\"\n                        },\n                        \"responseElements\": {\n                            \"x-amz-request-id\": \"EB83377E620D5838\",\n                            \"x-amz-id-2\": \"q413p4G4uob6HMIPTz+g+EakQ/D0Rxr+EykRCItkVWyi0ATJNQI53aOaQ8LdW9Zj+MlpF9lWElo=\"\n   },\n                        \"s3\": {\n                            \"s3SchemaVersion\": \"1.0\",\n                            \"configurationId\": \"Bucket-SQS-Notification\",\n                            \"bucket\": {\n                                \"name\": \"test\",\n           \"ownerIdentity\": {\n                                    \"principalId\": \"XXXXXXXX\"\n                                },\n                  \"arn\": \"arn:aws:s3:::test\"\n                            },\n                            \"object\": {\n               \"key\": \"123.eml\",\n                                \"size\": 1028307,\n                                \"eTag\": \"5e83856bca84110d17a33cddde8bda5b\",\n                                \"versionId\": \"UgQxpXhsIB9xudr67yfR9h4EiJiMNKZC\",\n                                \"sequencer\": \"005C405F712CC109C0\"\n                            }\n                        }\n                    }\n                ]\n            }",
+        "attributes": [
+          "Object"
+        ],
+        "messageAttributes": {},
+        "md5OfBody": "7812759fd9e5f134a72b4617da56614c",
+        "eventSource": "aws:sqs",
+        "eventSourceARN": "arn:aws:sqs:us-east-1: 777813915040:demo",
+        "awsRegion": "us-east-1"
+      }
+    ]
+  }
